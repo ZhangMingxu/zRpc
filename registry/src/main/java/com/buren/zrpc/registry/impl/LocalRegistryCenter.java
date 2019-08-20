@@ -19,7 +19,7 @@ public class LocalRegistryCenter extends AbstractRegistryCenter {
     }
 
     @Override
-    protected Boolean register(ProviderConfig provider) {
+    protected synchronized Boolean register(ProviderConfig provider) {
         ServiceConfig service = holder.getService(provider.getInterfaceClass().getName());
         if (service == null) {
             service = new ServiceConfig(provider.getInterfaceClass());

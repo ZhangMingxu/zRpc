@@ -1,5 +1,8 @@
 package com.buren.zrpc.commcon.config;
 
+import com.buren.zrpc.commcon.exception.RpcException;
+
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +22,11 @@ public class ServiceConfig {
     private List<ConsumerConfig> consumers = new ArrayList<>(); //调用者
 
     public ServiceConfig(Class interfaceClass) {
+        if (!interfaceClass.isInterface()) {
+            throw new RpcException("注册的接口不是一个接口");
+        }
         this.name = interfaceClass.getName();
-
+        initMethods();
     }
 
     public void addProvider(ProviderConfig provider) {
@@ -37,5 +43,16 @@ public class ServiceConfig {
 
     public Map<String, ProviderConfig> getProviders() {
         return providers;
+    }
+
+    private void initMethods() {
+        Method[] methods = interfaceClass.getMethods();
+        if (methods.length == 0) {
+            throw new RpcException("注册的接口内没有方法");
+        }
+        for (Method method : methods) {
+            MethodConfig methodConfig = new MethodConfig(method);
+            this.methods.putIfAbsent(method.getName(), methodConfig);
+        }
     }
 }

@@ -26,5 +26,5 @@ public abstract class AbstractRegistryCenter implements RegistryCenter {
         return register(providerConfig);
     }
 
-    protected abstract Boolean register(ProviderConfig provider);
+    protected  abstract Boolean register(ProviderConfig provider);
 }
