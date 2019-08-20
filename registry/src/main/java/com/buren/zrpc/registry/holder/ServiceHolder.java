@@ -1,6 +1,6 @@
 package com.buren.zrpc.registry.holder;
 
-import com.buren.zrpc.registry.vo.Service;
+import com.buren.zrpc.commcon.config.ServiceConfig;
 
 /**
  * 保存服务信息
@@ -13,12 +13,12 @@ public interface ServiceHolder {
      *
      * @param service 需要增加的服务
      */
-    void addService(Service service);
+    void addService(ServiceConfig service);
 
     /**
      * 获取一个服务
      *
      * @param name 服务全类名
      */
-    Service getService(String name);
+    ServiceConfig getService(String name);
 }

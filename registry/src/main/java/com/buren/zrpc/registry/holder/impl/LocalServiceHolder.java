@@ -1,7 +1,7 @@
 package com.buren.zrpc.registry.holder.impl;
 
 import com.buren.zrpc.registry.holder.ServiceHolder;
-import com.buren.zrpc.registry.vo.Service;
+import com.buren.zrpc.commcon.config.ServiceConfig;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,15 +12,15 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author zhangmingxu ON 17:08 2019-08-20
  **/
 public class LocalServiceHolder implements ServiceHolder {
-    private static final Map<String, Service> holder = new ConcurrentHashMap<>();
+    private static final Map<String, ServiceConfig> holder = new ConcurrentHashMap<>();
 
     @Override
-    public void addService(Service service) {
+    public void addService(ServiceConfig service) {
         holder.put(service.getName(), service);
     }
 
     @Override
-    public Service getService(String name) {
+    public ServiceConfig getService(String name) {
         return holder.get(name);
     }
 }

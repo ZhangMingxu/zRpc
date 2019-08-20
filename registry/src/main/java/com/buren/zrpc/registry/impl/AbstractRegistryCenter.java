@@ -1,9 +1,8 @@
 package com.buren.zrpc.registry.impl;
 
+import com.buren.zrpc.commcon.config.ProviderConfig;
 import com.buren.zrpc.commcon.serializer.Serializer;
-import com.buren.zrpc.commcon.vo.ProviderInfo;
 import com.buren.zrpc.registry.RegistryCenter;
-import com.buren.zrpc.registry.vo.Service;
 
 
 /**
@@ -18,12 +17,14 @@ public abstract class AbstractRegistryCenter implements RegistryCenter {
         this.serializer = serializer;
     }
 
-    public Boolean register(byte[] info) {
+    public Boolean register(String ip, byte[] info) {
         if (info == null || info.length == 0) {
             return false;
         }
-        return register(serializer.serialize(info, ProviderInfo.class));
+        ProviderConfig providerConfig = serializer.serialize(info, ProviderConfig.class);
+        providerConfig.setIp(ip);
+        return register(providerConfig);
     }
 
-    protected abstract Boolean register(ProviderInfo provider);
+    protected abstract Boolean register(ProviderConfig provider);
 }

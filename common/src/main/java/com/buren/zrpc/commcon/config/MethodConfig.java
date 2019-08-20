@@ -1,15 +1,15 @@
-package com.buren.zrpc.registry.vo;
+package com.buren.zrpc.commcon.config;
 
 import java.lang.reflect.Method;
 
 /**
  * @author zhangmingxu ON 15:42 2019-08-20
  **/
-public class RpcMethod {
+public class MethodConfig {
     private String name;
     private Object[] args;
     private Object returnValue;
 
-    public RpcMethod(Method method) {
+    public MethodConfig(Method method) {
     }
 }

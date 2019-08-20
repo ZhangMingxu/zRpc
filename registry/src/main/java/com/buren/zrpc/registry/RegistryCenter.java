@@ -9,9 +9,10 @@ public interface RegistryCenter {
     /**
      * 注册一个服务
      *
+     * @param ip   提供者IP
      * @param info 暴露服务的信息
      */
-    Boolean register(byte[] info);
+    Boolean register(String ip, byte[] info);
 
 
 }
