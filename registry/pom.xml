@@ -11,5 +11,12 @@
 
     <artifactId>registry</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.buren.zrpc</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
