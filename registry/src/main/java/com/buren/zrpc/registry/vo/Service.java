@@ -11,15 +11,16 @@ import java.util.Map;
  *
  * @author zhangmingxu ON 15:40 2019-08-20
  **/
-public class Service<T> {
+public class Service {
     private String name; //全包名
+    private Class interfaceClass;
     private Map<String, RpcMethod> methods = new HashMap<>(); //有的方法
     private List<Provider> providers = new ArrayList<>(); //提供者
     private List<Consumer> consumers = new ArrayList<>(); //调用者
 
-    public Service(String name, Map<String, RpcMethod> methods) {
-        this.name = name;
-        this.methods = methods;
+    public Service(Class interfaceClass) {
+        this.name = interfaceClass.getName();
+
     }
 
     public void addProvider(Provider provider) {

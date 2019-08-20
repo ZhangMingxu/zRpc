@@ -1,6 +1,7 @@
 package com.buren.zrpc.registry.impl;
 
 import com.buren.zrpc.commcon.serializer.Serializer;
+import com.buren.zrpc.commcon.vo.ProviderInfo;
 import com.buren.zrpc.registry.RegistryCenter;
 import com.buren.zrpc.registry.vo.Service;
 
@@ -21,8 +22,8 @@ public abstract class AbstractRegistryCenter implements RegistryCenter {
         if (info == null || info.length == 0) {
             return false;
         }
-        return register(serializer.serialize(info, Service.class));
+        return register(serializer.serialize(info, ProviderInfo.class));
     }
 
-    protected abstract Boolean register(Service service);
+    protected abstract Boolean register(ProviderInfo provider);
 }
